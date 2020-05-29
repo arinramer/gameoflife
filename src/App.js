@@ -136,7 +136,7 @@ function App() {
   })
 
 const [running, setRunning] = useState(false);
-const [speed, setSpeed] = useState(500)
+const [speed, setSpeed] = useState(100)
 
 const runningRef = useRef(running);
 runningRef.current = running
