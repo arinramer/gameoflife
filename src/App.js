@@ -200,14 +200,14 @@ return (
         )}
       </div>
       <div style={{display: 'flex', flexFlow: 'column', marginLeft: '4%', marginRight: '-12%', width: '310px'}}>
-          <Button variant={running ? "danger" : "primary"} style={{marginBottom: '12%', width: '90px'}} onClick={() => {
-            setRunning(!running);
-            if (!running) {
-              runningRef.current = true;
-              runSimulation();
-            }
-          }}>{running ? 'stop' : 'start'}</Button>
           <div style={{display: 'flex', flexFlow: 'column'}}>
+            <Button variant={running ? "warning" : "primary"} style={{marginBottom: '12%', width: '90px'}} onClick={() => {
+              setRunning(!running);
+              if (!running) {
+                runningRef.current = true;
+                runSimulation();
+              }
+            }}>{running ? 'Pause' : 'Start'}</Button>
             <Button variant="secondary" style={{marginBottom: '12%', width: '90px'}} onClick={() => {
               setRunning(false);
               setSpeed(900)
@@ -222,7 +222,7 @@ return (
             }} disabled={(speed === 100) ? "true" : ""}>Fast</Button>
           </div>
           <div style={{display: 'flex', flexFlow: 'column'}}>
-            <Button variant="warning" style={{marginBottom: '12%', width: '90px'}} onClick={() => {
+            <Button variant="danger" style={{marginBottom: '12%', width: '90px'}} onClick={() => {
               setRunning(false);
               setGrid(() => {
                 const rows = [];
