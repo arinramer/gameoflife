@@ -252,7 +252,7 @@ return (
           </div>
           <Button variant="success" style={{marginBottom: '0%', width: '90px'}} onClick={() => setColorToggled(!colorToggled)}>{colorToggled ? "Hide Colors" : "Show Colors"}</Button>
         </div>
-      <div style={{display: 'flex', flexDirection: 'column', width: '275px'}}>
+      <div style={{display: 'flex', flexDirection: 'column', marginLeft: '50px', width: '275px'}}>
         <h1>Rules</h1>
         <ul>
           <li>Births: Each dead cell adjacent to exactly three live neighbors will become live in the next generation.</li>
