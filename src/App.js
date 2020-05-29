@@ -175,7 +175,31 @@ return (
   <div style={{display: 'flex', flexFlow: 'column', alignItems: 'center'}}>
     <h1 style={{margin: '2%'}}>Conway's Game of Life</h1>
     <div style={{display: 'flex', flexFlow: 'row'}}>
-      <div style={{display: 'flex', flexFlow: 'column', marginLeft: '10%', marginRight: '-10%', width: '310px'}}>
+      
+      <div 
+        style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${numCols}, 15px)`
+        }}>
+          {grid.map((rows, i) => 
+            rows.map((col, k) => ( 
+            <div 
+              key={`${i}-${k}`}
+              onClick={() => {
+                const newGrid = produce(grid, gridCopy => {
+                  gridCopy[i][k] = grid[i][k] ? 0 : 1;
+                })
+                setGrid(newGrid)
+              }}
+              style={{ 
+                width: 15, 
+                height: 15, backgroundColor: grid[i][k] ? color : undefined,
+                border: 'solid 1px black'}}
+              />
+          ))
+        )}
+      </div>
+      <div style={{display: 'flex', flexFlow: 'column', marginLeft: '4%', marginRight: '-12%', width: '310px'}}>
           <Button variant={running ? "danger" : "primary"} style={{marginBottom: '12%', width: '90px'}} onClick={() => {
             setRunning(!running);
             if (!running) {
@@ -227,34 +251,10 @@ return (
             </Dropdown>
           </div>
           <Button variant="success" style={{marginBottom: '0%', width: '90px'}} onClick={() => setColorToggled(!colorToggled)}>{colorToggled ? "Hide Colors" : "Show Colors"}</Button>
-          
         </div>
-      <div 
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${numCols}, 15px)`
-        }}>
-          {grid.map((rows, i) => 
-            rows.map((col, k) => ( 
-            <div 
-              key={`${i}-${k}`}
-              onClick={() => {
-                const newGrid = produce(grid, gridCopy => {
-                  gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                })
-                setGrid(newGrid)
-              }}
-              style={{ 
-                width: 15, 
-                height: 15, backgroundColor: grid[i][k] ? color : undefined,
-                border: 'solid 1px black'}}
-              />
-          ))
-        )}
-      </div>
-      <div style={{display: 'flex', flexDirection: 'column', marginLeft: '3%', width: '275px'}}>
+      <div style={{display: 'flex', flexDirection: 'column', width: '275px'}}>
         <h1>Rules</h1>
-        <ul style={{marginBottom: '23%'}}>
+        <ul>
           <li>Births: Each dead cell adjacent to exactly three live neighbors will become live in the next generation.</li>
           <li>Death by isolation: Each live cell with one or fewer live neighbors will die in the next generation.</li>
           <li>Death by overcrowding: Each live cell with four or more live neighbors will die in the next generation.</li>
