@@ -179,7 +179,7 @@ return (
       <div 
         style={{
           display: 'grid',
-          gridTemplateColumns: `repeat(${numCols}, 15px)`
+          gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))`
         }}>
           {grid.map((rows, i) => 
             rows.map((col, k) => ( 
